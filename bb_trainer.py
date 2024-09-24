@@ -1,6 +1,7 @@
-# from groq import Groq # type: ignore
 import random
 import openai
+import os
+from dotenv import load_dotenv
 
 def choose_option(options):
   # Add "Random" to the options list
@@ -36,15 +37,12 @@ def get_recipe(method,process,ratio,grams):
     if method == 'Aeropress':
         prompt = f'{prompt} For Aeropress take into account its maximum capacity of 200 ml, if I need to brew more than this suggest a recipe with bypass.' 
 
+    load_dotenv()
 
     client = openai.OpenAI(
         base_url="https://api.groq.com/openai/v1",
-        api_key='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'
+        api_key=os.getenv('GROQ_KEY')
     )
-
-    # client = Groq(
-    #     api_key="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",
-    # )
 
     chat_completion = client.chat.completions.create(
         messages=[
@@ -65,30 +63,34 @@ def get_recipe(method,process,ratio,grams):
 
     return chat_completion.choices[0].message.content
 
-methods = ['Aeropress','V60','Origami w/ Flat Filter','Origami w/ Cone Filter','Kalita','Plinc']
-process = ['Slow Natural', 'Honey', 'Red Honey', 'Washed']
+def run():
+    methods = ['Aeropress','V60','Origami w/ Flat Filter','Origami w/ Cone Filter','Kalita','Plinc']
+    process = ['Slow Natural', 'Honey', 'Red Honey', 'Washed']
 
-print('Bloom Battles Trainer!')
-print('\n')
 
-method = choose_option(methods)
-print('\n')
-process = choose_option(process)
-print('\n')
-grams = get_random_num(12,30)
-ratio = get_random_num(10,20)
+    print('Bloom Battles Trainer!')
+    print('\n')
 
-print('Your selection:')
-print(method)
-print(process)
-print(f'{grams}g')
-print(f'1:{ratio}')
+    method = choose_option(methods)
+    print('\n')
+    process = choose_option(process)
+    print('\n')
+    grams = get_random_num(12,30)
+    ratio = get_random_num(10,20)
 
-print('\n')
-choice  = input('Suggest a recipe? (y/n): ')
-if choice == 'y':
-  recipe = get_recipe(method,process,ratio,grams)
-  print(recipe)
-  print('Get Bloomin!')
-else:
-   print('Get Bloomin!')
+    print('Your selection:')
+    print(method)
+    print(process)
+    print(f'{grams}g')
+    print(f'1:{ratio}')
+
+    print('\n')
+    choice  = input('Suggest a recipe? (y/n): ')
+    if choice == 'y':
+        recipe = get_recipe(method,process,ratio,grams)
+        print(recipe)
+        print('Get Bloomin!')
+    else:
+        print('Get Bloomin!')
+
+run()
