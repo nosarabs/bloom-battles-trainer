@@ -1,7 +1,7 @@
 import random
 import openai
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv # type: ignore
 
 def choose_option(options):
   # Add "Random" to the options list
