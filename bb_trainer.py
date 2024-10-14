@@ -64,7 +64,7 @@ def get_recipe(method,process,ratio,grams):
     return chat_completion.choices[0].message.content
 
 def run():
-    methods = ['Aeropress','V60','Origami w/ Flat Filter','Origami w/ Cone Filter','Kalita','Plinc']
+    methods = ['Aeropress','V60','Origami w/ Flat Filter','Origami w/ Cone Filter','Kalita','Plinc','XXXXX']
     process = ['Slow Natural', 'Honey', 'Red Honey', 'Washed']
 
 
