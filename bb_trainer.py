@@ -30,7 +30,7 @@ def get_recipe(method,process,ratio,grams):
 
     prompt = f'''Give me a great {method} coffee recipe for {grams} grams of a {process} with a ratio of 1:{ratio}. 
             Suggest the best grind size for these characteristics and explain why. 
-            Also tell me how many clicks in the comandante c40 the suggested grins size will be.
+            Also tell me how many clicks in the comandante c40 the suggested grind size will be.
             Suggest the best pouring schedule for these characteristics and explain why.
             Don't give me tips or notes.
             '''
